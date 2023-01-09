@@ -16,6 +16,22 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
+const Item = ({ title, to, icon, selected, setSelected }) => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    return(
+        <MenuItem 
+            active={selected === title} 
+            style={{color: colors.grey[100]}} 
+            onClick={() => setSelected(title)} 
+            icon={icon} 
+        >
+            <Typography>{ title }</Typography>
+            <Link to={to} />
+        </MenuItem>
+    )
+}
+
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -97,7 +113,7 @@ const Sidebar = () => {
             </Box>
           )}
 
-          {/* <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
               to="/"
@@ -199,7 +215,8 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-          </Box> */}
+          </Box>
+
         </Menu>
       </ProSidebarProvider>
     </Box>
